@@ -24,12 +24,8 @@
   </tbody>
 </table>
 
-<p>
-  <b>Number of breweries: <%= @breweries.count %></b>
-</p>
+<p><b>Number of breweries: <%= @breweries.count %></b></p>
 
 <%= link_to 'New Brewery', new_brewery_path %>
 
-<p>
-  <%= link_to 'List of beers', beers_path %>
-</p>
+<%= link_to 'List of beers', beers_path %>
