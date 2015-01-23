@@ -3,17 +3,25 @@ Rails.application.routes.draw do
 
   resources :breweries
 
+  resources :ratings, only: [:index, :new, :create, :destroy]
+
+  get 'kaikki_bisset', to: 'beers#index'
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'breweries#index'
+
+  root 'breweries#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
-  get 'kaikki_bisset', to: 'beers#index'
-  get 'ratings', to: 'ratings#index'
+
+
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
