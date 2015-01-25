@@ -1,5 +1,5 @@
 class Beer < ActiveRecord::Base
-  included RatingAverage
+  include RatingAverage
 
   belongs_to :brewery
   has_many :ratings, dependent: :destroy
