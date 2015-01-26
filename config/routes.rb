@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
+  resources :users
+
   resources :beers
 
   resources :breweries
 
   resources :ratings, only: [:index, :new, :create, :destroy]
 
+  resource :session, only: [:new, :create, :destroy]
+
   get 'kaikki_bisset', to: 'beers#index'
 
+  get 'login', to: 'users#new'
 
+  get 'signup', to: 'sessions#new'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
