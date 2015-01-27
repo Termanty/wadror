@@ -2,7 +2,6 @@ module RatingAverage
   extend ActiveSupport::Concern
 
   def average_rating
-    #self.rating.average(:score)
-    "5"
+    self.ratings.average(:score)
   end
 end
