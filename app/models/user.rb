@@ -1,10 +1,17 @@
 class User < ActiveRecord::Base
   include RatingAverage
 
-  validates :username, uniqueness: true, length: { minimum: 3,  maximum: 15 }
+  has_secure_password
 
-  has_many :ratings ,numericality: { greater_than_or_equal_to: 1024,
-                                    less_than_or_equal_to: ->(_){Time.now.year} }
+  has_many :ratings, dependent: :destroy
+  has_many :beers, through: :ratings
+  has_many :memberships, dependent: :destroy
+  has_many :beer_clubs, through: :memberships
 
+  validates :username, uniqueness: true, length: { in: 3..15 }
+
+  validates :password, length: { minimum: 4 }
+
+  validates :password, format: { with: /[A-Z].*\d|\d.*[A-Z]/,  message: "has to contain one number and one upper case letter" }
 
 end
