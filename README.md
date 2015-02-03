@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/termanty/ratebeer-public.png)](https://travis-ci.org/termanty/ratebeer-public)
+
 == README
 
 Heroku page: https://thawing-meadow-6882.herokuapp.com/breweries
