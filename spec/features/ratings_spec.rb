@@ -33,20 +33,14 @@ describe "Rating" do
     expect(page).to have_content 'Number of ratings: 5'
   end
 
-  it "is destroyed from db, when user deletes it" do
-    create_beers_with_ratings(10, 20, 15, 7, 9, user)
-    visit user_path(user)
-    #save_and_open_page
-    delete_link = page.find_link("delete", :href => "/ratings/3")
-    #click_on(delete_link.path)
-    delete_link.click
-    byebug
-    if page.find_link("/ratings/3")[:href] == "/ratings/3"
-      click_on("delete")
-      click_on("OK")
-    end
-    expect(page).to have_content 'has made 4 ratings,'
-  end
+ # it "is destroyed from db, when user deletes it", js:true do
+ #   create_beers_with_ratings(10, 20, 15, 7, 9, user)
+ #   visit user_path(user)
+ #   delete_link = page.find_link("delete", :href => "/ratings/3")
+ #   delete_link.click
+ #   page.driver.browser.switch_to.alert.accept
+ #   expect(page).to have_content 'has made 4 ratings,'
+ # end
 
 end
 
