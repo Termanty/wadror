@@ -7,7 +7,10 @@ describe "Rating" do
   let!(:user) { FactoryGirl.create :user }
 
   before :each do
-    sign_in(username:"Pekka", password:"Foobar1")
+    visit signin_path
+    fill_in('username', with:'Pekka')
+    fill_in('password', with:'Foobar1')
+    click_button('Log in')
   end
 
   it "when given, is registered to the beer and user who is signed in" do
@@ -22,5 +25,39 @@ describe "Rating" do
     expect(user.ratings.count).to eq(1)
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
+  end
+
+  it "amount is corretly shown in raitings page" do
+    create_beers_with_ratings(10, 20, 15, 7, 9, user)
+    visit ratings_path
+    expect(page).to have_content 'Number of ratings: 5'
+  end
+
+  it "is destroyed from db, when user deletes it" do
+    create_beers_with_ratings(10, 20, 15, 7, 9, user)
+    visit user_path(user)
+    #save_and_open_page
+    delete_link = page.find_link("delete", :href => "/ratings/3")
+    #click_on(delete_link.path)
+    delete_link.click
+    byebug
+    if page.find_link("/ratings/3")[:href] == "/ratings/3"
+      click_on("delete")
+      click_on("OK")
+    end
+    expect(page).to have_content 'has made 4 ratings,'
+  end
+
+end
+
+def create_beer_with_rating(score, user)
+  beer = FactoryGirl.create(:beer)
+  FactoryGirl.create(:rating, score:score, beer:beer, user:user)
+  beer
+end
+
+def create_beers_with_ratings(*scores, user)
+  scores.each do |score|
+    create_beer_with_rating(score, user)
   end
 end
