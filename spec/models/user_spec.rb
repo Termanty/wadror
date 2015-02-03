@@ -1,5 +1,8 @@
 require 'rails_helper'
 
+BeerClub
+BeerClubsController
+
 describe User do
   it "has the username set correctly" do
     user = User.create username:"Pekka"
