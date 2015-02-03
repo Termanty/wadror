@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/termanty/ratebeer.png)](https://travis-ci.org/termanty/ratebeer)
+[![Build Status](https://travis-ci.org/termanty/wadror.png)](https://travis-ci.org/termanty/wadror)
 
 == README
 
