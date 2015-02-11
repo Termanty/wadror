@@ -20,24 +20,11 @@ class User < ActiveRecord::Base
   end
 
   def favorite_style
-    max_rating (ratings.map { |r| [r.style, r.score]})
+   #max_rating (ratings.map { |r| [r.style, r.score]})
   end
 
   def favorite_brewery
 
   end
-
-
-
-  private
-
-  def max_rating arr
-    arr.group_by { |r| r.first }.each { |style, list| [style, avg list] }
-  end
-t
-  def avg arr
-    arr.reduce(:+) / arr.size.to_f
-  end
-
 
 end

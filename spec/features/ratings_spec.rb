@@ -33,25 +33,34 @@ describe "Rating" do
     expect(page).to have_content 'Number of ratings: 5'
   end
 
- # it "is destroyed from db, when user deletes it", js:true do
- #   create_beers_with_ratings(10, 20, 15, 7, 9, user)
- #   visit user_path(user)
- #   delete_link = page.find_link("delete", :href => "/ratings/3")
- #   delete_link.click
- #   page.driver.browser.switch_to.alert.accept
- #   expect(page).to have_content 'has made 4 ratings,'
- # end
+  it "of one user are shown at user's page" do
+    my_rating1 = FactoryGirl.create(:rating, score:10, beer:beer1, user:user)
+    my_rating2 = FactoryGirl.create(:rating, score:30, beer:beer2, user:user)
+    other_rating = FactoryGirl.create(:rating, score:20, beer:beer1)
 
-end
+    visit user_path(user.id)
+    expect(page).to have_content "Has made 2 ratings"
 
-def create_beer_with_rating(score, user)
-  beer = FactoryGirl.create(:beer)
-  FactoryGirl.create(:rating, score:score, beer:beer, user:user)
-  beer
-end
-
-def create_beers_with_ratings(*scores, user)
-  scores.each do |score|
-    create_beer_with_rating(score, user)
+    expect(page).to have_content my_rating1.to_s
+    expect(page).to have_content my_rating2.to_s
+    expect(page).not_to have_content other_rating.to_s
   end
+
+  it "can be removed by the user" do
+    my_rating1 = FactoryGirl.create(:rating, score:10, beer:beer1, user:user)
+    my_rating2 = FactoryGirl.create(:rating, score:30, beer:beer2, user:user)
+    other_rating = FactoryGirl.create(:rating, score:20, beer:beer1)
+
+    visit user_path(user.id)
+    deleted_rating = page.all('li')[1].text
+
+    expect{
+      page.all('a', text:'delete' )[1].click
+    }.to change{Rating.count}.from(3).to(2)
+
+    visit user_path(user.id)
+    expect(page).not_to have_content deleted_rating
+  end
+
 end
+
