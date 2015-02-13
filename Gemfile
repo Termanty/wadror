@@ -23,9 +23,9 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'httparty'
+  gem 'webmock'
 end
-
-gem 'httparty'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
