@@ -392,6 +392,7 @@
       ],
       "/home/termanty/RubyProjects/Wadror/ratebeer/lib/beermapping_api.rb": [
         1,
+        1,
         null,
         1,
         6,
@@ -441,7 +442,13 @@
         1,
         null,
         2,
+        2,
         null,
+        null,
+        null,
+        1,
+        0,
+        0,
         null,
         null
       ],
@@ -591,6 +598,6 @@
         null
       ]
     },
-    "timestamp": 1423846710
+    "timestamp": 1424078981
   }
 }

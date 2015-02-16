@@ -1,4 +1,5 @@
 class BeermappingApi
+  require 'httparty'
 
   def self.places_in(city)
     city = city.downcase
