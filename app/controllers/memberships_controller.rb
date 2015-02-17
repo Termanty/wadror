@@ -15,7 +15,9 @@ class MembershipsController < ApplicationController
   # GET /memberships/new
   def new
     @membership = Membership.new
+    @beer_clubs = BeerClub.all.select{ |club| !club.users.include? current_user }
   end
+
 
   # GET /memberships/1/edit
   def edit
@@ -28,6 +30,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
+        current_user.memberships << @membership
         format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
