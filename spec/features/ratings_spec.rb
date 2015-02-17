@@ -47,9 +47,9 @@ describe "Rating" do
   end
 
   it "can be removed by the user" do
-    my_rating1 = FactoryGirl.create(:rating, score:10, beer:beer1, user:user)
-    my_rating2 = FactoryGirl.create(:rating, score:30, beer:beer2, user:user)
-    other_rating = FactoryGirl.create(:rating, score:20, beer:beer1)
+    FactoryGirl.create(:rating, score:10, beer:beer1, user:user)
+    FactoryGirl.create(:rating, score:30, beer:beer2, user:user)
+    FactoryGirl.create(:rating, score:20, beer:beer1)
 
     visit user_path(user.id)
     deleted_rating = page.all('li')[1].text

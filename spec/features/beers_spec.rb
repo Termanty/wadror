@@ -7,7 +7,7 @@ describe "Beer" do
 
     expect{
       click_button('Create Beer')
-    }.to change{Beer.count}.by(1)
+    }.to change{Beer.count}.by(0)
   end
 
   it "is not added if a invalid valid name given" do
