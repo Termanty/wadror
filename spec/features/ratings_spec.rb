@@ -52,10 +52,10 @@ describe "Rating" do
     FactoryGirl.create(:rating, score:20, beer:beer1)
 
     visit user_path(user.id)
-    deleted_rating = page.all('li')[1].text
+    deleted_rating = page.all('li').last.text
 
     expect{
-      page.all('a', text:'delete' )[1].click
+      page.all('a', text:'delete' ).last.click
     }.to change{Rating.count}.from(3).to(2)
 
     visit user_path(user.id)
