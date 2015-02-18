@@ -23,4 +23,9 @@ FactoryGirl.define do
     brewery
     style_id 1
   end
+
+  factory :style do
+    name "Lager"
+    description "adsfadfafafas"
+  end
 end

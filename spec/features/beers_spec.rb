@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe "Beer" do
   it "can be added if a valid name given" do
+    FactoryGirl.create(:style)
     visit new_beer_path
     fill_in('beer_name', with:'Karhu')
 
     expect{
       click_button('Create Beer')
-    }.to change{Beer.count}.by(0)
+    }.to change{Beer.count}.by(1)
   end
 
   it "is not added if a invalid valid name given" do
