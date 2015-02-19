@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Beer" do
   it "can be added if a valid name given" do
-    FactoryGirl.create(:style)
+    FactoryGirl.create(:styles)
     visit new_beer_path
     fill_in('beer_name', with:'Karhu')
 

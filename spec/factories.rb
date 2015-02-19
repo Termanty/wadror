@@ -25,7 +25,7 @@ FactoryGirl.define do
     style_id 1
   end
 
-  factory :style do
+  factory :styles do
     name "Lager"
     description "adsfadfafafas"
   end

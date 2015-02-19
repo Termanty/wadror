@@ -13,23 +13,21 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
 
-  get 'kaikki_bisset', to: 'beers#index'
-
+  # singing
   get 'signup', to: 'users#new'
-
   get 'signin', to: 'sessions#new'
-
-  get 'places', to: 'places#index'
-
-  resources :places, only:[:index, :show]
-
-  post 'places', to:'places#search'
-
-  post 'places', to:'places#search'
-
   delete 'signout', to: 'sessions#destroy'
 
+  resources :places, only:[:index, :show]
+  post 'places', to:'places#search'
 
+  get 'kaikki_bisset', to: 'beers#index'
+
+
+
+  #styles
+  get 'styles/:id', to: 'styles#show', as: :style
+  get 'styles', to: 'styles#index'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

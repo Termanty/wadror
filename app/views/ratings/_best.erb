@@ -1,0 +1,21 @@
+<div class = "col-md-4" >
+  <h3>Best <%= name %></h3>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th></th>
+      <th>average</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% top.each do |t| %>
+        <tr>
+          <td><%= link_to t.name, t %></td>
+          <td><%= t.average_rating.truncate(2) %></td>
+          <td></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
