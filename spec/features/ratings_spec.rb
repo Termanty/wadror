@@ -30,7 +30,7 @@ describe "Rating" do
   it "amount is corretly shown in raitings page" do
     create_beers_with_ratings(10, 20, 15, 7, 9, user)
     visit ratings_path
-    expect(page).to have_content 'Number of ratings: 5'
+    expect(page).to have_content 'Number of all given ratings: 5'
   end
 
   it "of one user are shown at user's page" do

@@ -3,16 +3,14 @@ require 'rails_helper'
 describe "Breweries page" do
   it "should not have any before been created" do
     visit breweries_path
-    expect(page).to have_content 'Active'
-    expect(page).to have_content 'Number of active breweries: 0'
-    expect(page).to have_content 'Number of retired breweries: 0'
+    expect(page).to have_content 'No breweries'
   end
 
   describe "when breweries exists" do
     before :each do
-      @breweries = ["Koff", "Karjala", "Schlenkerla"]
+      @test_breweries = ["Koff", "Karjala", "Schlenkerla"]
       year = 1896
-      @breweries.each do |brewery_name|
+      @test_breweries.each do |brewery_name|
         FactoryGirl.create(:brewery, name: brewery_name, year: year += 1, active: true)
       end
       FactoryGirl.create(:brewery, name: "ANO", year: 1990, active: false)
@@ -21,8 +19,8 @@ describe "Breweries page" do
     end
 
     it "lists the breweries and their total number" do
-      expect(page).to have_content "Number of active breweries: #{@active_breweries.count}"
-      @active_breweries.each do |brewery_name|
+      expect(page).to have_content "Number of active breweries: 3"
+      @test_breweries.each do |brewery_name|
         expect(page).to have_content brewery_name
       end
     end
@@ -30,7 +28,7 @@ describe "Breweries page" do
     it "allows user to navigate to page of a Brewery" do
       click_link "Koff"
       expect(page).to have_content "Koff"
-      expect(page).to have_content "Established in 1897"
+      expect(page).to have_content "Established year: 1897"
     end
 
   end
