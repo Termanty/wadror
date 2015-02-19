@@ -8,7 +8,7 @@
   <%= render 'best', top: @top_styles, name: 'styles' %>
 </div>
 
-<h3>Top 3 most active raters</h3>
+<h3>Most active raters</h3>
 <table class="table table-hover" >
   <thead>
       <tr>
@@ -32,7 +32,7 @@
   </tbody>
 </table>
 
-<h3>Most recent ratings</h3>
+<h3>recent ratings</h3>
 <ul>
     <% @recent_ratings.each do |rating| %>
     <li><%= rating %> <%= link_to rating.user.username, rating.user %></li>
