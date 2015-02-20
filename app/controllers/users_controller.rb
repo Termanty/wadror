@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :toggle_access_denied]
+  before_action :ensure_admin_status, only: :toggle_access_denied
 
   # GET /users
   # GET /users.json
@@ -65,6 +66,14 @@ class UsersController < ApplicationController
     else
       redirect_to :back
     end
+  end
+
+  def toggle_access_denied
+    @user.update_attribute :access_denied, (not @user.access_denied)
+
+    new_status = @user.access_denied? ? "frozen" : "unfrozen"
+
+    redirect_to :back, notice:"user access status changed to #{new_status}"
   end
 
   private

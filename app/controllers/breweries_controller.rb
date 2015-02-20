@@ -72,19 +72,4 @@ class BreweriesController < ApplicationController
     def brewery_params
       params.require(:brewery).permit(:name, :year, :activity)
     end
-
-    def authenticate
-      admin_accounts = { "admin" => "secret", "pekka" => "beer", "arto" => "foobar", "matti" => "ittam"}
-
-      authenticate_or_request_with_http_basic do |username, password|
-        dfadfdsa
-        permission = false
-        admin_accounts.each do |user, psw|
-          if username == user and password == psw
-            permission = true
-          end
-        end
-        permission
-      end
-    end
 end

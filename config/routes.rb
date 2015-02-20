@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :beer_clubs
 
-  resources :users
+  resources :users do
+    post 'toggle_access_denied', on: :member
+  end
 
   resources :beers
 

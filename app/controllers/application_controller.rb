@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_admin_status
-    redirect_to :back, alert:'action is allowed only members with admin rights' unless current_user.admin?
+    redirect_to :back, alert:'action is allowed only members with admin rights' unless current_user && current_user.admin?
   end
 end
