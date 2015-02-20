@@ -1,5 +1,3 @@
-
-
 <h2>Rating Statistics</h2>
 
 <div class = "row" >
@@ -24,8 +22,8 @@
       <tr>
           <td><%= link_to rater.username, rater %></td>
           <td><%= rater.favorite_beer %></td>
-          <td></td>
-          <td></td>
+          <td><%= rater.favorite_style_name %></td>
+          <td><%= rater.favorite_brewery_name %></td>
           <td><%= rater.ratings.count %></td>
       </tr>
   <% end %>

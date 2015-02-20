@@ -7,12 +7,12 @@
   </thead>
 
   <tbody>
-  <% breweries.each do |brewery| %>
-      <tr>
-        <td><%= link_to brewery.name, brewery %></td>
-        <td><%= brewery.year %></td>
-        <td></td>
-      </tr>
-  <% end %>
+      <% breweries.each do |brewery| %>
+          <tr>
+            <td><%= link_to brewery.name, brewery %></td>
+            <td><%= brewery.year %></td>
+            <td></td>
+          </tr>
+      <% end %>
   </tbody>
 </table>
