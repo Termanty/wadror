@@ -9,7 +9,7 @@
   <% if @user.ratings.empty? %>
       beer has not yet been rated
   <% else %>
-      Has made <%= pluralize(@user.ratings.count, 'rating') %>, with average <%= @user.average_rating %>
+      Has made <%= pluralize(@user.ratings.count, 'rating') %>, with average <%= round(@user.average_rating) %>
   <% end %>
 </p>
 
