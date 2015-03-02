@@ -4,10 +4,27 @@ class BreweriesController < ApplicationController
   before_action :ensure_admin_status, only: :destroy
 
   def index
-    def index
-      @active_breweries = Brewery.active
-      @retired_breweries = Brewery.retired
+    @active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
+
+    order = params[:order] || 'name'
+
+    if session[:year_order].nil?
+      session[:year_order] = 1
+    else
+      session[:year_order] *= -1
     end
+
+
+    @active_breweries = case order
+              when 'name' then @active_breweries.sort_by{ |b| b.name }
+              when 'year' then @active_breweries.sort_by{ |b| session[:year_order]*b.year }
+            end
+
+    @retired_breweries = case order
+              when 'name' then @retired_breweries.sort_by{ |b| b.name }
+              when 'year' then @retired_breweries.sort_by{ |b| session[:year_order]*b.year }
+            end
   end
 
   def show
