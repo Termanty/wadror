@@ -9,8 +9,11 @@ gem 'bootstrap-sass'
 
 gem 'jquery-turbolinks'
 
+
+
 group :development do
   gem 'rails_layout'
+  gem 'rack-mini-profiler'
 end
 
 group :development, :test do
@@ -18,6 +21,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'better_errors'
   gem 'rspec-rails', '~> 3.0'
+
 end
 
 group :production do

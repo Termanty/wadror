@@ -4,6 +4,8 @@
   <thead>
     <tr>
       <th>Username</th>
+      <th> rated beers </th>
+      <th> total ratings </th>
       <th>Member since</th>
       <% if current_user && current_user.admin? %>
           <th>Frozen</th>
@@ -15,6 +17,8 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.username, user %></td>
+        <td><%= user.beers.size %></td>
+        <td><%= user.ratings.size %></td>
         <td><%= user.created_at.to_date %></td>
         <% if current_user && current_user.admin? %>
             <td>
