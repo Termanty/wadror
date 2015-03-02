@@ -7,6 +7,8 @@ gem 'rails', '4.2.0'
 
 gem 'bootstrap-sass'
 
+gem 'jquery-turbolinks'
+
 group :development do
   gem 'rails_layout'
 end

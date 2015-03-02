@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   get 'kaikki_bisset', to: 'beers#index'
 
 
+  get 'beerlist', to:'beers#list'
+  get 'ngbeerlist', to:'beers#nglist'
+  get 'brewerylist', to:'breweries#list#'
+
 
   #styles
   get 'styles/:id', to: 'styles#show', as: :style
