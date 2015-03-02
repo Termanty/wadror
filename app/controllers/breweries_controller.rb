@@ -8,38 +8,44 @@ class BreweriesController < ApplicationController
 
   def index
     @breweries = Brewery.all
-    @active_breweries = Brewery.active
-    @retired_breweries = Brewery.retired
+    unless fragment_exist?( 'breweries_tables' )
+      @breweries = Brewery.all
+      @active_breweries = Brewery.active
+      @retired_breweries = Brewery.retired
 
-    order = params[:order] || 'name'
+      order = params[:order] || 'name'
 
-    if session[:year_order].nil?
-      session[:year_order] = 1
-    else
-      session[:year_order] *= -1
+      if session[:year_order].nil?
+        session[:year_order] = 1
+      else
+        session[:year_order] *= -1
+      end
+
+
+      @active_breweries = case order
+                when 'name' then @active_breweries.sort_by{ |b| b.name }
+                when 'year' then @active_breweries.sort_by{ |b| session[:year_order]*b.year }
+              end
+
+      @retired_breweries = case order
+                when 'name' then @retired_breweries.sort_by{ |b| b.name }
+                when 'year' then @retired_breweries.sort_by{ |b| session[:year_order]*b.year }
+              end
+
     end
-
-
-    @active_breweries = case order
-              when 'name' then @active_breweries.sort_by{ |b| b.name }
-              when 'year' then @active_breweries.sort_by{ |b| session[:year_order]*b.year }
-            end
-
-    @retired_breweries = case order
-              when 'name' then @retired_breweries.sort_by{ |b| b.name }
-              when 'year' then @retired_breweries.sort_by{ |b| session[:year_order]*b.year }
-            end
   end
 
   def show
   end
 
   def new
+    expire_fragment('breweries_tables')
     @brewery = Brewery.new
   end
 
   # GET /breweries/1/edit
   def edit
+    expire_fragment('breweries_tables')
   end
 
   def toggle_activity
@@ -52,6 +58,7 @@ class BreweriesController < ApplicationController
   end
 
   def create
+    expire_fragment('breweries_tables')
     @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
